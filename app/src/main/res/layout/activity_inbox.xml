@@ -21,9 +21,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <!--include layout="@layout/content_inbox" /-->
 
-    <include layout="@layout/content_inbox" />
-
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listViewSMS">
+    </ListView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
