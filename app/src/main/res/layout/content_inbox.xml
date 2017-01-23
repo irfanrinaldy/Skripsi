@@ -13,16 +13,19 @@
     android:orientation="vertical"
     tools:showIn="@layout/activity_inbox">
 
-    <TextView
-        android:id="@+id/idP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/pengirim"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/isi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/waktu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.WRITE_SMS"/>
     <uses-permission android:name="android.permission.READ_LOGS"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
@@ -29,7 +30,13 @@
         <activity
             android:name=".About"
             android:label="@string/about">
-        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+        </activity>
+        <activity
+            android:name=".ViewMessage"
+            android:label="ViewMessage">
+        </activity>
+
+        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
             android:name="com.google.android.gms.version"

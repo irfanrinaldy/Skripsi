@@ -4,51 +4,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_vertical_margin">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Enter Phone Number"
-        />
+        <EditText
+            android:id="@+id/editTextPhoneNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/enterphonenumber"
+            android:inputType="phone" />
 
-    <EditText
-        android:id="@+id/editTextPhoneNo"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        />
-    
-    <Button
-        android:id="@+id/pick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pilih Kontak"
-        android:contentDescription="@string/datakontak"
-        android:onClick="doLaunchContactPicker"
-        />
+        <Button
+            android:id="@+id/pick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/pilihkontak"
+            android:contentDescription="@string/datakontak"
+            android:onClick="doLaunchContactPicker" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter SMS Message : "
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        />
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/editTextMessage"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:lines="5"
-        android:gravity="top"
-        />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/buttonSend"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Send"
-        />
+        <EditText
+            android:id="@+id/editTextMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:hint="@string/entermessage"
+            android:lines="10"
+            android:padding="@dimen/activity_vertical_margin"
+            android:gravity="top" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="25dp">
+
+        <Button
+            android:id="@+id/buttonSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="@string/send" />
+
+        <Button
+            android:id="@+id/btnVoiceInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="@string/voiceinput" />
+
+    </LinearLayout>
 
 </LinearLayout>

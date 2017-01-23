@@ -2,15 +2,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.pipam.skripsi.Inbox">
+
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-    <item android:id="@+id/about"
+    <item
+        android:id="@+id/about"
         android:title="@string/about"
         app:showAsAction="never"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
 </menu>
