@@ -29,13 +29,11 @@ import java.util.Date;
 
 public class Inbox extends AppCompatActivity {
 
-    private FloatingActionButton fab;
     String[] m;
     ListView listView;
     String pesanTerpilih;
-
     TextView lblMsg, lblNo;
-
+    private FloatingActionButton fab;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -46,13 +44,14 @@ public class Inbox extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inbox);
+
         listView = (ListView) findViewById(R.id.listViewSMS);
         Uri uriSMSURI = Uri.parse("content://sms/inbox");
         final String[] reqCols = new String[]{"address", "body"};
         Cursor cursor = getContentResolver().query(uriSMSURI, null, null, null, null);
-        int[] to = new int[]{R.id.pengirim,R.id.isi};
+        int[] to = new int[]{R.id.pengirim, R.id.isi};
         SimpleCursorAdapter simpleCursorAdapter;
-        simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.content_inbox, cursor, reqCols, to,0);
+        simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.content_inbox, cursor, reqCols, to, 0);
         simpleCursorAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
             @Override
             public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
@@ -191,6 +190,10 @@ public class Inbox extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }else if(id== R.id.sendActivity){
+            Intent sendIntent = new Intent(Inbox.this, Sent.class);
+            Inbox.this.startActivity(sendIntent);
             return true;
         }
         return super.onOptionsItemSelected(item);
