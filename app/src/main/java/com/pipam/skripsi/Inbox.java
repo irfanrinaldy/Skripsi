@@ -189,9 +189,7 @@ public class Inbox extends AppCompatActivity {
         }
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }else if(id== R.id.sendActivity){
+        if(id== R.id.sendActivity){
             Intent sendIntent = new Intent(Inbox.this, Sent.class);
             Inbox.this.startActivity(sendIntent);
             return true;

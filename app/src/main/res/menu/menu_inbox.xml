@@ -4,13 +4,6 @@
     tools:context="com.pipam.skripsi.Inbox">
 
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        app:showAsAction="never"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <item
         android:id="@+id/sendActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

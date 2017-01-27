@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,33 +16,37 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/enterphonenumber"
-            android:inputType="phone" />
+            android:inputType="phone"/>
 
         <Button
             android:id="@+id/pick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/pilihkontak"
             android:contentDescription="@string/datakontak"
-            android:onClick="doLaunchContactPicker" />
+            android:onClick="doLaunchContactPicker"
+            android:paddingLeft="-20dp"
+            android:paddingRight="-20dp"
+            android:text="@string/pilihkontak"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
 
         <EditText
             android:id="@+id/editTextMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
+            android:gravity="top"
             android:hint="@string/entermessage"
-            android:lines="10"
-            android:padding="@dimen/activity_vertical_margin"
-            android:gravity="top" />
+            android:inputType="textMultiLine"
+            android:lines="18"
+            android:paddingLeft="20dp"
+            android:paddingTop="@dimen/activity_vertical_margin"/>
 
     </LinearLayout>
 
@@ -50,15 +54,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:padding="25dp">
-
-        <Button
-            android:id="@+id/buttonSend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="@dimen/activity_vertical_margin"
-            android:text="@string/send" />
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:weightSum="2">
 
         <Button
             android:id="@+id/btnVoiceInput"
@@ -66,7 +65,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="@dimen/activity_vertical_margin"
-            android:text="@string/voiceinput" />
+            android:text="@string/voiceinput"/>
+
+        <Button
+            android:id="@+id/buttonSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="@string/send"/>
 
     </LinearLayout>
 

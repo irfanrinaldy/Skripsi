@@ -33,7 +33,7 @@
             android:label="@string/about"></activity>
         <activity
             android:name=".ViewMessage"
-            android:label="ViewMessage"></activity>
+            android:label="Lihat Pesan Masuk"></activity>
 
         <!--
      ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -43,7 +43,13 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".Sent"></activity>
+        <activity
+            android:name=".Sent"
+            android:label="Pesan Terkirim"></activity>
+
+        <activity
+            android:name=".ViewSent"
+            android:label="Lihat Pesan Terkirim"></activity>
     </application>
 
 </manifest>

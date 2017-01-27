@@ -83,7 +83,7 @@ public class Sent extends AppCompatActivity {
                 String view_waktu = date + " " + time;
                 String view_idpesan = cslihatpesan.getString(cslihatpesan.getColumnIndexOrThrow("_id"));
                 String view_thread = cslihatpesan.getString(cslihatpesan.getColumnIndexOrThrow("thread_id"));
-                Intent clickIntent = new Intent(Sent.this, ViewMessage.class);
+                Intent clickIntent = new Intent(Sent.this, ViewSent.class);
 
                 Uri conctactUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(view_penerima));
                 Cursor cursor1 =getContentResolver().query(conctactUri, null, null, null, null);

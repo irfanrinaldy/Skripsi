@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:minLines="23"
+        android:minLines="25"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:textAppearance="?android:attr/textAppearance"
         android:textSize="15sp"/>
@@ -49,28 +49,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="25dp">
-
-        <Button
-            android:id="@+id/btnForward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/forward"/>
+        android:orientation="horizontal"
+        android:paddingLeft="85dp">
 
         <Button
             android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:paddingRight="15dp"
             android:text="@string/delete"/>
 
         <Button
-            android:id="@+id/btnSpeak"
+            android:id="@+id/btnForward"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/speak"/>
+            android:paddingLeft="10dp"
+            android:text="@string/forward"/>
 
     </LinearLayout>
 

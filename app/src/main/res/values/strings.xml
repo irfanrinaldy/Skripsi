@@ -1,19 +1,18 @@
 <resources>
     <string name="app_name">SMSkripsi</string>
-    <string name="action_settings">Settings</string>
-    <string name="about">About</string>
+    <string name="about">Tentang</string>
     <string name="sent">Pesan Terkirim</string>
-    <string name="activity_new">New</string>
+    <string name="activity_new">Pesan Baru</string>
     <string name="datakontak">Data Kontak</string>
     <string name="forward">Teruskan</string>
     <string name="delete">Hapus</string>
     <string name="deletemessagedialog">Apakah Anda yakin ingin menghapus pesan ini?</string>
     <string name="confirmation">Konfirmasi</string>
     <string name="speak">Ubah ke suara</string>
-    <string name="entermessage">Enter Message</string>
-    <string name="enterphonenumber">Enter Phone Number</string>
+    <string name="entermessage">Tulis Pesan</string>
+    <string name="enterphonenumber">Masukkan Nomor Tujuan</string>
     <string name="pilihkontak">Pilih Kontak</string>
-    <string name="send">Send</string>
+    <string name="send">Kirim</string>
     <string name="voiceinput">Voice Input</string>
     <string name="kirim">Kirim</string>
 </resources>
