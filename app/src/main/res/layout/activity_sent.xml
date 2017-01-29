@@ -4,15 +4,14 @@
     android:id="@+id/activity_sent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.pipam.skripsi.Sent">
+
+    <include layout="@layout/layer_toolbar" />
 
     <ListView
         android:id="@+id/listViewSent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
-
-    </ListView>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

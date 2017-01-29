@@ -18,10 +18,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -29,16 +25,8 @@ import java.util.Date;
 
 public class Inbox extends AppCompatActivity {
 
-    String[] m;
-    ListView listView;
-    String pesanTerpilih;
-    TextView lblMsg, lblNo;
+    private ListView listView;
     private FloatingActionButton fab;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,57 +34,10 @@ public class Inbox extends AppCompatActivity {
         setContentView(R.layout.activity_inbox);
 
         listView = (ListView) findViewById(R.id.listViewSMS);
-        Uri uriSMSURI = Uri.parse("content://sms/inbox");
-        final String[] reqCols = new String[]{"address", "body"};
-        Cursor cursor = getContentResolver().query(uriSMSURI, null, null, null, null);
-        int[] to = new int[]{R.id.pengirim, R.id.isi};
-        SimpleCursorAdapter simpleCursorAdapter;
-        simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.content_inbox, cursor, reqCols, to, 0);
-        simpleCursorAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
-            @Override
-            public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-                //ubah nomor dengan contact name
-                if (columnIndex == 2) {
 
-                    TextView tvContact = (TextView) view;
-//                    TextView tvMessage = (TextView) view;
-                    String pengirimDB = cursor.getString(cursor.getColumnIndex("address"));
-//                    String pesanDB = cursor.getString(cursor.getColumnIndex("message"));
+        //getSmsInbox
+        getSmsInbox();
 
-                    //get contact name
-                    Uri contactUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(pengirimDB));
-                    Cursor cursor1 = getContentResolver().query(contactUri, null, null, null, null);
-                    ContentResolver contentResolver = getContentResolver();
-
-                    int size = cursor1.getCount();
-                    if (size > 0 && cursor1 != null) {
-                        Log.d("SMS", "masuk seleksi");
-                        for (int i = 0; i < size; i++) {
-                            cursor1.moveToPosition(i);
-                            String id1 = cursor1.getString(cursor1.getColumnIndexOrThrow(ContactsContract.Contacts._ID));
-                            Log.d("SMS", id1);
-                            Cursor phoneCursor = contentResolver.query(contactUri, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " =? ", new String[]{id1}, null);
-
-                            if (phoneCursor.moveToFirst()) {
-                                String namaKontak = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-//                                String isiPesan = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA.toLowerCase()));
-                                phoneCursor.close();
-                                tvContact.setText(namaKontak);
-                            } else {
-                                tvContact.setText(pengirimDB);
-//                                tvMessage.setText(pesanDB);
-                            }
-
-                        }
-                        cursor1.close();
-                    } else {
-                        tvContact.setText(pengirimDB);
-                    }
-                    return true;
-                }
-                return false;
-            }
-        });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -150,7 +91,6 @@ public class Inbox extends AppCompatActivity {
                 startActivity(click);
             }
         });
-        listView.setAdapter(simpleCursorAdapter);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -163,9 +103,59 @@ public class Inbox extends AppCompatActivity {
                 New.start(Inbox.this);
             }
         });
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    private void getSmsInbox() {
+        Uri uriSMSURI = Uri.parse("content://sms/inbox");
+        final String[] reqCols = new String[]{"address", "body"};
+        Cursor cursor = getContentResolver().query(uriSMSURI, null, null, null, null);
+        int[] to = new int[]{R.id.pengirim, R.id.isi};
+        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.content_inbox, cursor, reqCols, to, 0);
+        simpleCursorAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
+            @Override
+            public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+                //ubah nomor dengan contact name
+                if (columnIndex == 2) {
+
+                    TextView tvContact = (TextView) view;
+                    String pengirimDB = cursor.getString(cursor.getColumnIndex("address"));
+//                    String pesanDB = cursor.getString(cursor.getColumnIndex("message"));
+
+                    //get contact name
+                    Uri contactUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(pengirimDB));
+                    Cursor cursor1 = getContentResolver().query(contactUri, null, null, null, null);
+                    ContentResolver contentResolver = getContentResolver();
+
+                    int size = cursor1.getCount();
+                    if (size > 0 && cursor1 != null) {
+                        Log.d("SMS", "masuk seleksi");
+                        for (int i = 0; i < size; i++) {
+                            cursor1.moveToPosition(i);
+                            String id1 = cursor1.getString(cursor1.getColumnIndexOrThrow(ContactsContract.Contacts._ID));
+                            Log.d("SMS", id1);
+                            Cursor phoneCursor = contentResolver.query(contactUri, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " =? ", new String[]{id1}, null);
+
+                            if (phoneCursor.moveToFirst()) {
+                                String namaKontak = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+//                                String isiPesan = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA.toLowerCase()));
+                                phoneCursor.close();
+                                tvContact.setText(namaKontak);
+                            } else {
+                                tvContact.setText(pengirimDB);
+//                                tvMessage.setText(pesanDB);
+                            }
+
+                        }
+                        cursor1.close();
+                    } else {
+                        tvContact.setText(pengirimDB);
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+        listView.setAdapter(simpleCursorAdapter);
     }
 
     @Override
@@ -189,7 +179,7 @@ public class Inbox extends AppCompatActivity {
         }
 
         //noinspection SimplifiableIfStatement
-        if(id== R.id.sendActivity){
+        if (id == R.id.sendActivity) {
             Intent sendIntent = new Intent(Inbox.this, Sent.class);
             Inbox.this.startActivity(sendIntent);
             return true;
@@ -197,39 +187,11 @@ public class Inbox extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Inbox Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
 
     @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
+    protected void onResume() {
+        super.onResume();
+        getSmsInbox();
+        Log.d("onResume", "resume from inbox");
     }
 }

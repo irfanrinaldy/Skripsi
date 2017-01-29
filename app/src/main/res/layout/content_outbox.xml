@@ -15,7 +15,7 @@
 
 
     <TextView
-        android:id="@+id/pengirim"
+        android:id="@+id/penerima"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
@@ -28,4 +28,5 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textSize="14sp" />
+
 </LinearLayout>

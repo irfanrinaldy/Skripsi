@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,28 +19,38 @@ import java.util.Locale;
  * Created by Pipam on 12/22/2016.
  */
 public class ViewMessage extends AppCompatActivity {
-    TextToSpeech tts;
-    TextView number, date, message;
-    Button forward, delete, speak;
+    private TextToSpeech tts;
+    private TextView number, date, message;
+    private Button forward, delete, speak;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.viewmessage);
 
-        number = (TextView) findViewById(R.id.tvNumber);
-        date = (TextView) findViewById(R.id.tvDate);
+
+//        tvTitleMessage = (TextView) findViewById(R.id.tv_title_message);
+//        tvSubtitleMessage = (TextView) findViewById(R.id.tv_subtitle_message);
+//        number = (TextView) findViewById(R.id.tvNumber);
+//        date = (TextView) findViewById(R.id.tvDate);
         message = (TextView) findViewById(R.id.tvMessage);
         forward = (Button) findViewById(R.id.btnForward);
         delete = (Button) findViewById(R.id.btnDelete);
         speak = (Button) findViewById(R.id.btnSpeak);
     }
+
     @Override
     protected void onStart() {
         super.onStart();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //noinspection ConstantConditions
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent i = getIntent();
-        number.setText(i.getStringExtra("no"));
-        date.setText(i.getStringExtra("date"));
+
+        setTitle(i.getStringExtra("no"));
+        toolbar.setSubtitle(i.getStringExtra("date"));
         message.setText(i.getStringExtra("msg"));
 
         forward.setOnClickListener(new View.OnClickListener() {
@@ -58,14 +70,13 @@ public class ViewMessage extends AppCompatActivity {
                         String id_pesan_hapus = i.getStringExtra("idpesan");
                         String id_thread_hapus = i.getStringExtra("idthread");
 
-                        Uri deleteUri =Uri.parse("content://sms/inbox");
-                        getContentResolver().delete(deleteUri, "thread_id=? and _id=?", new String[] {
+                        Uri deleteUri = Uri.parse("content://sms");
+                        getContentResolver().delete(deleteUri, "thread_id=? and _id=?", new String[]{
                                 String.valueOf(id_thread_hapus),
                                 String.valueOf(id_pesan_hapus)
                         });
                         finish();
                         Toast.makeText(ViewMessage.this, "Pesan Terhapus", Toast.LENGTH_SHORT).show();
-                        onBackPressed();
                     }
                 });
             }
@@ -82,14 +93,25 @@ public class ViewMessage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String toSpeak = message.getText().toString();
-                Toast.makeText(getApplicationContext(), toSpeak,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), toSpeak, Toast.LENGTH_SHORT).show();
                 tts.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
             }
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home btn_bg
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     public void onPause() {
-        if (tts !=null) {
+        if (tts != null) {
             tts.stop();
             tts.shutdown();
         }

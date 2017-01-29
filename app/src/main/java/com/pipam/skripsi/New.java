@@ -13,23 +13,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 
 public class New extends AppCompatActivity {
-    EditText nomorkontak, text;
-    private Button speechToText;
+    private EditText nomorkontak, text;
+    private ImageView speechToText;
     private static final int CONTACT_PICKER_RESULT = 1001;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+
 
     public static void start(Context context) {
         Intent intent = new Intent(context, New.class);
@@ -64,8 +59,8 @@ public class New extends AppCompatActivity {
                         }
                         break;
 
-                    case 1:{
-                        if(resultCode == RESULT_OK && null !=data){
+                    case 1: {
+                        if (resultCode == RESULT_OK && null != data) {
                             ArrayList<String> teks = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                             text.setText(teks.get(0));
                         }
@@ -90,10 +85,10 @@ public class New extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new);
 
-        speechToText = (Button)findViewById(R.id.btnVoiceInput);
-        Button send = (Button) findViewById(R.id.buttonSend);
+        speechToText = (ImageView) findViewById(R.id.btnVoiceInput);
+        ImageView send = (ImageView) findViewById(R.id.buttonSend);
         nomorkontak = (EditText) findViewById(R.id.editTextPhoneNo);
-        text = (EditText)findViewById(R.id.editTextMessage);
+        text = (EditText) findViewById(R.id.editTextMessage);
         Intent intent = getIntent();
         if (intent.getStringExtra("message") != null) {
             text.setText(intent.getStringExtra("message"));
@@ -106,7 +101,7 @@ public class New extends AppCompatActivity {
                     try {
                         SmsManager smsManager = SmsManager.getDefault();
                         smsManager.sendTextMessage(nomor, null, pesan, null, null);
-                        Log.d("SMS","nomor : "+nomor+" pesan : "+pesan);
+                        Log.d("SMS", "nomor : " + nomor + " pesan : " + pesan);
                         ContentValues values = new ContentValues();
                         values.put("address", nomor);
                         values.put("body", pesan);
@@ -135,19 +130,14 @@ public class New extends AppCompatActivity {
                 Intent intent1 = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent1.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "id-ID");
 
-                try{
-                    startActivityForResult(intent1,1);
+                try {
+                    startActivityForResult(intent1, 1);
                     text.setText("");
-                }catch (ActivityNotFoundException a){
-                    Toast toast = Toast.makeText(getApplicationContext(),"Perangkat tidak mendukung", Toast.LENGTH_SHORT);
+                } catch (ActivityNotFoundException a) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Perangkat tidak mendukung", Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }
         });
     }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-//        super.onActivityResult(requestCode, resultCode, data);
-//    }
 }
