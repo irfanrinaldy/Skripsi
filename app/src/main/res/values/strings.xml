@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SMSkripsi</string>
+    <string name="app_name">SMSpeech</string>
     <string name="about">Tentang</string>
     <string name="sent">Pesan Terkirim</string>
     <string name="activity_new">Pesan Baru</string>

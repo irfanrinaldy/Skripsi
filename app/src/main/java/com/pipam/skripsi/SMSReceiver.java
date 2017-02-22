@@ -7,17 +7,15 @@ import android.widget.Toast;
 
 public class SMSReceiver extends BroadcastReceiver{
 
-    public SMSReceiver(){
-
+    public SMSReceiver() {
     }
     @Override
-    public void onReceive(Context context,Intent intent){
-        Toast.makeText(context, "Action : "+intent.getAction(), Toast.LENGTH_SHORT).show();
-
+    public void onReceive(Context context,Intent intent) {
+        Toast.makeText(context, "Intent Detected.", Toast.LENGTH_LONG).show();
     }
+}
 //    @Override
 //    public IBinder onBind(Intent intent) {
 //        // TODO: Return the communication channel to the service.
 //        throw new UnsupportedOperationException("Not yet implemented");
 //    }
-}

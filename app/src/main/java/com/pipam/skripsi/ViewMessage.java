@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +21,7 @@ import java.util.Locale;
 public class ViewMessage extends AppCompatActivity {
     private TextToSpeech tts;
     private TextView number, date, message;
-    private Button forward, delete, speak;
+    private ImageView forward, delete, speak;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +34,9 @@ public class ViewMessage extends AppCompatActivity {
 //        number = (TextView) findViewById(R.id.tvNumber);
 //        date = (TextView) findViewById(R.id.tvDate);
         message = (TextView) findViewById(R.id.tvMessage);
-        forward = (Button) findViewById(R.id.btnForward);
-        delete = (Button) findViewById(R.id.btnDelete);
-        speak = (Button) findViewById(R.id.btnSpeak);
+        forward = (ImageView) findViewById(R.id.btnForward);
+        delete = (ImageView) findViewById(R.id.btnDelete);
+        speak = (ImageView) findViewById(R.id.btnSpeak);
     }
 
     @Override

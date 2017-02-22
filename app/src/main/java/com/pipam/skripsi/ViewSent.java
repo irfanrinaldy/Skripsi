@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 public class ViewSent extends AppCompatActivity {
     private TextView message;
-    private Button forward, delete;
+    private ImageView forward, delete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +26,8 @@ public class ViewSent extends AppCompatActivity {
         setContentView(R.layout.viewsent);
 
         message = (TextView) findViewById(R.id.tvMessage);
-        forward = (Button) findViewById(R.id.btnForward);
-        delete = (Button) findViewById(R.id.btnDelete);
+        forward = (ImageView) findViewById(R.id.btnForward);
+        delete = (ImageView) findViewById(R.id.btnDelete);
     }
 
     @Override

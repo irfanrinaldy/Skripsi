@@ -31,19 +31,19 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/activity_horizontal_margin">
 
-                <Button
+                <ImageView
                     android:id="@+id/btnDelete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/delete" />
+                    android:src="@drawable/ic_delete"/>
 
-                <Button
+                <ImageView
                     android:id="@+id/btnForward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/forward" />
+                    android:src="@drawable/ic_forward"/>
 
             </LinearLayout>
         </LinearLayout>

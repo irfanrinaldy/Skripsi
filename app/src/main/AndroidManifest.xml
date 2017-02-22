@@ -111,7 +111,7 @@
                 </service>
 
                 <receiver
-                    android:name=".SMSReceiver"
+                    android:name=".MMSReceiver"
                     android:enabled="true"
                     android:exported="true"
                     android:permission="android.permission.BROADCAST_WAP_PUSH">
@@ -122,11 +122,11 @@
                 </receiver>
 
                 <receiver
-                    android:name=".SMSReceiverDeliver"
+                    android:name=".SMSReceiver"
                     android:enabled="true"
                     android:exported="true"
-                    android:permission="android.permission.BROADCAST_SMS">>
-                    <intent-filter>
+                    android:permission="android.permission.BROADCAST_SMS">
+                    <intent-filter android:priority="1000">
                         <action android:name="android.provider.Telephony.SMS_DELIVER"/>
                         <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
                     </intent-filter>

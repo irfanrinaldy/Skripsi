@@ -1,5 +1,6 @@
 package com.pipam.skripsi;
 
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,8 +18,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -27,6 +26,7 @@ public class Inbox extends AppCompatActivity {
 
     private ListView listView;
     private FloatingActionButton fab;
+    private BroadcastReceiver SMSReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -16,11 +16,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-
 import java.util.ArrayList;
 
 public class New extends AppCompatActivity {
+
     private EditText nomorkontak, text;
     private ImageView speechToText;
     private static final int CONTACT_PICKER_RESULT = 1001;
@@ -89,6 +88,8 @@ public class New extends AppCompatActivity {
         ImageView send = (ImageView) findViewById(R.id.buttonSend);
         nomorkontak = (EditText) findViewById(R.id.editTextPhoneNo);
         text = (EditText) findViewById(R.id.editTextMessage);
+
+        //mengambil isi pesan jika pesan diteruskan
         Intent intent = getIntent();
         if (intent.getStringExtra("message") != null) {
             text.setText(intent.getStringExtra("message"));
